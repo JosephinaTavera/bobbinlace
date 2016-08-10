@@ -1,0 +1,27 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<h2>You are viewing comments </h2>
+	<h1><%= list.title %> </h1>
+
+	<form action='/comment/<%=list._id%>/new' method=GET>
+		<input type='submit' value='New Comment' />
+	</form>
+
+	
+
+
+	<% if (list.comments === undefined) {%>
+		<p>No comments to display</p>
+	<%} else { %>
+		<% for (var i=0; i < list.comments.length; i++ ){%>
+			<li> <%= list.comments[i] %> </li>
+		<%}%>
+	<%}%>
+
+</body>
+
+</html>

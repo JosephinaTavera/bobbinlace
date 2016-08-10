@@ -1,0 +1,16 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>What's the new topic </h1>
+
+		<form action='/topic/new/<%= user %>' method = POST>
+	 	<input type='text' name='title' placeholder='Topic Title'/>
+	 	<input type = 'hidden' name='author' value = <%= user %>>
+	 	<input type='submit' value='Submit'/>
+	 	
+	</form>
+
+</body>
+</html>
