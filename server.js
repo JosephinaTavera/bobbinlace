@@ -16,8 +16,13 @@ db.once('open', function(){
 	console.log('Connected to mongodb');
 });
 
+/*Views*/
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
+
 // server
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 3000;
 app.listen(port, function()
 {
 	console.log('Connected to server');
