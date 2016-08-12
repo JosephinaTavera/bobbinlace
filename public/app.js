@@ -1,5 +1,3 @@
-// app.js
-
 // define our application and pull in ngRoute and ngAnimate
 var animateApp = angular.module('animateApp', ['ngRoute', 'ngAnimate']);
 
@@ -36,6 +34,8 @@ animateApp.config(function($routeProvider) {
 animateApp.controller('mainController', function($scope, $http) {
     $scope.pageClass = 'page-home';
 
+     $scope.formData = {};
+
     // when landing on the page, get all todos and show them
     $http.get('/index')
         .success(function(data) {
@@ -45,6 +45,29 @@ animateApp.controller('mainController', function($scope, $http) {
         .error(function(data) {
             console.log('Error: ' + data);
         });
+
+// when submitting the user send the text to the node API
+   $http.get('/index')
+        .success(function(data) {
+            $scope.todos = data;
+            console.log(data);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+
+    // delete a todo after checking it
+    $scope.deleteTodo = function(id) {
+        $http.delete('/api/todos/' + id)
+            .success(function(data) {
+                $scope.todos = data;
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    };
+
 });
 
 // about page controller

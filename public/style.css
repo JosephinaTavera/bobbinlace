@@ -55,6 +55,8 @@ html         { overflow-y:hidden; }
     animation:slideInRight 0.5s both ease-in;    
 }
 
+
+
 /* contact ---------------------- */
 .page-contact.ng-leave      {
     -webkit-transform-origin: 50% 50%;
