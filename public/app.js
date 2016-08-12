@@ -1,5 +1,5 @@
 // define our application and pull in ngRoute and ngAnimate
-var animateApp = angular.module('animateApp', ['ngRoute', 'ngAnimate']);
+var animateApp = angular.module('animateApp', ['ngRoute', 'ngAnimate', 'animateApp.directives', 'ngSanitize']);
 
 // ROUTING ===============================================
 // set our routing for this application
@@ -31,7 +31,7 @@ animateApp.config(function($routeProvider) {
 
 // CONTROLLERS ============================================
 // home page controller
-animateApp.controller('mainController', function($scope, $http) {
+animateApp.controller('mainController', function($scope, $http, $sce) {
     $scope.pageClass = 'page-home';
 
      $scope.formData = {};
@@ -39,34 +39,15 @@ animateApp.controller('mainController', function($scope, $http) {
     // when landing on the page, get all todos and show them
     $http.get('/index')
         .success(function(data) {
-            $scope.todos = data;
+            // $scope.todos = data;
+            $scope.myHTML = $sce.trustAsHtml(data);
             console.log(data);
         })
         .error(function(data) {
             console.log('Error: ' + data);
         });
 
-// when submitting the user send the text to the node API
-   $http.get('/index')
-        .success(function(data) {
-            $scope.todos = data;
-            console.log(data);
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
 
-    // delete a todo after checking it
-    $scope.deleteTodo = function(id) {
-        $http.delete('/api/todos/' + id)
-            .success(function(data) {
-                $scope.todos = data;
-                console.log(data);
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
-    };
 
 });
 
@@ -76,6 +57,24 @@ animateApp.controller('aboutController', function($scope) {
 });
 
 // contact page controller
-animateApp.controller('contactController', function($scope) {
+animateApp.controller('contactController', function($scope, $http, $sce) {
     $scope.pageClass = 'page-contact';
+
+    $http.get('/index/topic/:username')
+    .success(function(data) {
+            $scope.myHTML = $sce.trustAsHtml(data);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+
+$http.get('/comment/:_id')
+    .success(function(data) {
+            $scope.myHTML = $sce.trustAsHtml(data);
+            console.log(data);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+
 });
