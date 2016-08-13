@@ -5,32 +5,46 @@
 
 </head>
 <body>
-<div class="container">
+<div class="table-responsive">
+
+<table class="table table-bordered">
 
 	<h1>Welcome  <%= user %> </h1>
 
-<div class="row">
+	
 
-	<form class="col-md-6"action='/topic/<%= user %>' method=POST>
+	<form class = "form-inline" role = "form" action='/topic/search' method=POST>
+
+	<div class = "form-group">
 		<input type='submit' value='New Topic' />
+		<input class = "form-control" type = 'text' name='title' placeholder='search'>"
+	</div>
+
 	</form>
 
-	<form class="col-md-6" action='/topic/search' method=POST>
-		<input type = 'text' name='title' placeholder='search'>
-	</form>
 
+	<thead>
+		<tr>
+			<th>Topic</th>
+			<th># Views</th>
+			<th>Author</th>
+		</tr>
+	</thead>
+	<!-- <br/> -->
 
-		
+	<tbody>
 		<% for (var i=0; i < list.length; i++ ){ %>
+			<tr>
 			<a href='/comment/<%=list[i]._id%>'>
-			<li>
-				<div class="col-md-8"> <%= list[i].title %>  </div>
-				<div class="col-md-1"> <%= list[i].comments.length %> </div>
-				<div class="col-md-1"> <%=list[i].author %> </div>
-			</li>
+				<td> <%= list[i].title %>  </td>
+				<td> <%= list[i].comments.length %> </td>
+				<td> <%=list[i].author %> </td>
 			</a>
+			</tr>
+			<!-- <br/> -->
 		<%} %>
-		</div>
+	</tbody>
+</table>
 
 
 
