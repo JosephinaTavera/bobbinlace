@@ -5,17 +5,10 @@ var Topic = require('../models/topic.js');
 var Comment = require('../models/comment.js')
 
 
-//Comment
-// router.post('/comment', function(req,res)
-// {
-// 		res.redirect('/topic/:topicid/comment');
-// });
-
 
 router.get('/:_id', function(req,res){
-	console.log(req.params._id)
-	Topic.findOne(req.params_id,function(err,topic){
-		// console.log('First Hello' + topic)
+	Topic.findOne(req.params,function(err,topic){
+		console.log('First Hello' + topic)
 		res.render('comment.html.ejs', {
 			list: topic,
 			user: req.params.author
@@ -24,9 +17,6 @@ router.get('/:_id', function(req,res){
 });
 
 
-// router.post('/new', function(req,res){
-// 	res.redirect('comment/new');
-// })
 
 router.get('/:_id/new', function(req,res){
 		// console.log(req.params);

@@ -39,9 +39,7 @@ animateApp.controller('mainController', function($scope, $http, $sce) {
     // when landing on the page, get all todos and show them
     $http.get('/index')
         .success(function(data) {
-            // $scope.todos = data;
             $scope.myHTML = $sce.trustAsHtml(data);
-            console.log(data);
         })
         .error(function(data) {
             console.log('Error: ' + data);
@@ -54,6 +52,8 @@ animateApp.controller('mainController', function($scope, $http, $sce) {
 // about page controller
 animateApp.controller('aboutController', function($scope) {
     $scope.pageClass = 'page-about';
+
+    
 });
 
 // contact page controller
@@ -68,13 +68,13 @@ animateApp.controller('contactController', function($scope, $http, $sce) {
             console.log('Error: ' + data);
         });
 
-$http.get('/comment/:_id')
-    .success(function(data) {
-            $scope.myHTML = $sce.trustAsHtml(data);
-            console.log(data);
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
+// $http.get('/comment/:_id')
+//     .success(function(data) {
+//             $scope.myHTML = $sce.trustAsHtml(data);
+//             console.log(data);
+//         })
+//         .error(function(data) {
+//             console.log('Error: ' + data);
+//         });
 
 });

@@ -5,30 +5,36 @@
 
 </head>
 <body>
+<div class="container">
 
 	<h1>Welcome  <%= user %> </h1>
 
+<div class="row">
 
-	<form action='/topic/<%= user %>' method=POST>
+	<form class="col-md-6"action='/topic/<%= user %>' method=POST>
 		<input type='submit' value='New Topic' />
 	</form>
 
-	<form action='/topic/search' method=POST>
+	<form class="col-md-6" action='/topic/search' method=POST>
 		<input type = 'text' name='title' placeholder='search'>
 	</form>
 
 
-
+		
 		<% for (var i=0; i < list.length; i++ ){ %>
 			<a href='/comment/<%=list[i]._id%>'>
-			<!-- <a href='/comment'> -->
-			<li> <%= list[i].title %>  <%= list[i].comments.length %> comments  author is <%=list[i].author %></li>
+			<li>
+				<div class="col-md-8"> <%= list[i].title %>  </div>
+				<div class="col-md-1"> <%= list[i].comments.length %> </div>
+				<div class="col-md-1"> <%=list[i].author %> </div>
+			</li>
 			</a>
 		<%} %>
+		</div>
 
 
 
 
-
+</div>
 </body>
 </html>
