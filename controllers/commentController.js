@@ -8,7 +8,6 @@ var Comment = require('../models/comment.js')
 
 router.get('/:_id', function(req,res){
 	Topic.findOne(req.params,function(err,topic){
-		console.log('First Hello' + topic)
 		res.render('comment.html.ejs', {
 			list: topic,
 			user: req.params.author
@@ -19,25 +18,19 @@ router.get('/:_id', function(req,res){
 
 
 router.get('/:_id/new', function(req,res){
-		// console.log(req.params);
 	res.render('newcomment.html.ejs',{
 		list: req.params
 	});
 })
 
 router.post('/:_id/new', function(req,res){
-	 console.log('req.params')
 	Topic.findOne(req.params,function(err,topic){
-		console.log(topic)
-		console.log(req.body)
-		console.log(topic.comments)
 		topic.comments.push(req.body);
 		topic.save(function(err) {
 			if (err){
 				console.error('ERROR');
 			}
 		});
-		console.log(topic.comments)
 		res.redirect('/comment/' + topic._id)
 	})
 })
