@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 var mongoose = require('mongoose');
 var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/lacedb';
 var db = mongoose.connection;
+mongoose.Promise = global.Promise;
 mongoose.connect(mongoUri);
 db.once('open', function(){
 	console.log('Connected to mongodb');
