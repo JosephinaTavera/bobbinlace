@@ -32,6 +32,7 @@ router.get('/topic/:username', function(req,res)
 		user: req.params.username,
 		list: topic
 	});
+	// res.json(results);
 })
 
 });
