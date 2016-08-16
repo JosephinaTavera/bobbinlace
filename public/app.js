@@ -1,10 +1,14 @@
 // define our application and pull in ngRoute and ngAnimate
-var animateApp = angular.module('animateApp', ['ngRoute', 'ngAnimate', 'animateApp.directives', 'ngSanitize']);
+var animateApp = angular.module('animateApp', ['ngRoute', 'ngAnimate', 'ngSanitize']);
 
 // ROUTING ===============================================
 // set our routing for this application
 // each route will pull in a different controller
-animateApp.config(function($routeProvider) {
+animateApp.config(function($routeProvider, $logProvider) {
+
+// use to enable log for debugging directive issues
+    $logProvider.debugEnabled(true);  
+
 
     $routeProvider
 
@@ -20,10 +24,16 @@ animateApp.config(function($routeProvider) {
             controller: 'aboutController'
         })
 
-        // contact page
+        // topic page
         .when('/contact', {
             templateUrl: 'page-contact.html',
             controller: 'contactController'
+        })
+
+        // comment page
+        .when('/comment', {
+            templateUrl: 'page-contact.html',
+            controller: 'commentController'
         });
 
 });
@@ -67,14 +77,22 @@ animateApp.controller('contactController', function($scope, $http, $sce) {
         .error(function(data) {
             console.log('Error: ' + data);
         });
+});
 
-// $http.get('/comment/:_id')
-//     .success(function(data) {
-//             $scope.myHTML = $sce.trustAsHtml(data);
-//             console.log(data);
-//         })
-//         .error(function(data) {
-//             console.log('Error: ' + data);
-//         });
 
+// comment page controller
+animateApp.controller('commentController', function($scope, $http, $sce) {
+    $scope.pageClass = 'page-contact';
+
+    $scope.formData = {};
+    console.log($scope.form._id)
+    
+    $http.get('/comment/:id')
+        .success(function(data) {
+                $scope.myHTML = $sce.trustAsHtml(data);
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
 });

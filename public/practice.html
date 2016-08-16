@@ -1,18 +1,14 @@
+<!doctype html>
 
-	angular.module('laceBobbin', [])
-		.directive('bobbinSheetRunner', function () {
-       "use strict";
-       return {
-       	restrict: 'E',
-          scope: {
-            bobbinSheetRunner: '&'
-          }
-       };
-		var stage;
-		var sunShape;
+<html>
+<head>
+	<meta charset="UTF-8"> 
+	<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+	<title>Lon Hosford Basic Animation in CreateJS</title>
+	<script>
+		var stage, sunShape;
 		function init()
 		{
-			console.log('Hi in directive');
 			stage = new createjs.Stage("stage-canvas");
 			var bgShape = new createjs.Shape();
 			bgShape.graphics.beginLinearGradientFill(
@@ -44,9 +40,37 @@
 			createjs.Ticker.addEventListener("tick", tickHandler);
 			stage.update();
 		}
-
 		function tickHandler(e)
 		{
 			stage.update();
 		}
-	});
+	</script>
+
+	<style>
+		body {
+			margin: 0;
+			padding: 15px;
+			background-color: #ccc;
+		}
+		canvas {
+			border: solid 2px #000;
+			background-color: #fff;
+			display: block;
+			margin: 0px auto 0px auto;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	</style>
+
+</head>
+
+<body onload="init();">
+	<canvas id="stage-canvas" width="550" height="400">
+		This web browser does not support canvas.
+	</canvas>
+
+</body>
+</html>
+
+<!-- Lon Hosford CREATEJS tutorial -->
+<!-- https://www.youtube.com/watch?v=si5vfovZR4I&list=PL1Edo5Vc75aT0qJ1lhT6G287h8V_SeIFR -->

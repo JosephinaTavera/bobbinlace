@@ -3,23 +3,37 @@
 	<title></title>
 </head>
 <body>
+<div class="table-responsive">
 
+<table class="table table-bordered">
 	<h2>You are viewing comments </h2>
 	<h1><%= list.title %> </h1>
 
-	<form action='/comment/<%=list._id%>/new' method=GET>
+	<form class="form-inline" role="form" action='/comment/<%=list._id%>/new' method=GET>
 		<input type='submit' value='New Comment' />
 	</form>
 
+<thead> 
+<tr>
+	<th>Comment</th>
+</tr>
+</thead>
+
+<tbody>
 
 	<% if (list.comments === undefined) {%>
 		<p>No comments to display</p>
 	<%} else { %>
 		<% for (var i=0; i < list.comments.length; i++ ){%>
-			<li> <%= list.comments[i].comment %> </li>
+		<tr>
+			<td><%= list.comments[i].comment %> </td>
+		</tr>
 		<%}%>
+	
 	<%}%>
-
+</tbody>
+</table>
+</div>
 </body>
 
 </html>

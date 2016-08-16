@@ -9,18 +9,18 @@
 
 <table class="table table-bordered">
 
-	<h1>Welcome  <%= user %> </h1>
-
+	<!-- <h1>Welcome  <%= user %> </h1>  -->
+		<h1>Welcome</h1>
 	
 
-	<form class = "form-inline" role = "form" action='/topic/search' method=POST>
+	<!-- <form class = "form-inline" role = "form" action='/topic/search' method=POST>
 
 	<div class = "form-group">
 		<input type='submit' value='New Topic' />
 		<input class = "form-control" type = 'text' name='title' placeholder='search'>"
 	</div>
-
-	</form>
+		<input type="hidden" name="_id" value="< %=list[i]._id%>" ng-model="form._id">
+	</form> -->
 
 
 	<thead>
@@ -35,11 +35,11 @@
 	<tbody>
 		<% for (var i=0; i < list.length; i++ ){ %>
 			<tr>
-			<a href='/comment/<%=list[i]._id%>'>
-				<td> <%= list[i].title %>  </td>
+				
+				<td>  <a ng-href='#comment' href='/comment/<%=list[i]._id%>'> 
+				<%= list[i].title %>  </a> </td>
 				<td> <%= list[i].comments.length %> </td>
 				<td> <%=list[i].author %> </td>
-			</a>
 			</tr>
 			<!-- <br/> -->
 		<%} %>
