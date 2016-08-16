@@ -36,7 +36,7 @@
 		<% for (var i=0; i < list.length; i++ ){ %>
 			<tr>
 				
-				<td>  <a ng-href='#comment' href='/comment/<%=list[i]._id%>'> 
+				<td>  <a href='/comment/<%=list[i]._id%>'> 
 				<%= list[i].title %>  </a> </td>
 				<td> <%= list[i].comments.length %> </td>
 				<td> <%=list[i].author %> </td>
